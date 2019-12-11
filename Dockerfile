@@ -94,6 +94,7 @@ RUN packages="                                               \
     kodi-screensaver-pyro                                    \
     kodi-screensaver-stars                                   \
     pulseaudio                                               \
+    libnss3                                                  \
     tzdata"                                               && \
                                                              \
     apt-get update                                        && \
