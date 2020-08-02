@@ -4,6 +4,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [2.8.0] - unreleased
+
+## Changed
+
+* Add `ARG DEBIAN_FRONTEND=noninteractive` to `Dockerfile` (see #34)
+
+## [2.7.0] - 2020-07-30
+
+### Changed
+
+* Bump to [Kodi 18.8](https://kodi.tv/article/kodi-leia-188-release)
+
+## [2.6.0] - 2020-06-02
+
+### Changed
+
+* Bump to [Kodi 18.7](https://kodi.tv/article/kodi-leia-187-release)
+
+### Added
+
+* Support for the [X-Arcade Tankstick](https://kodi.wiki/view/HOW-TO:X-Arcade_Tankstick_in_Kodi)
+
+## [2.5.0] - 2020-03-03
+
+### Changed
+
+* Bump to [Kodi 18.6](https://kodi.tv/article/kodi-leia-186-release)
+
+### Added
+
+* Additional spoken language support via `locales` package ([#33](https://github.com/ehough/docker-kodi/issues/30))
+* CpBlobs screensaver
+
 ## [2.4.0] - 2019-12-10
 
 ### Changed

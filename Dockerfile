@@ -3,7 +3,7 @@
 # https://github.com/ehough/docker-kodi
 # https://hub.docker.com/r/erichough/kodi/
 #
-# Copyright 2018-2019 - Eric Hough (eric@tubepress.com)
+# Copyright 2018-2020 - Eric Hough (eric@tubepress.com)
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,6 +20,11 @@
 
 FROM ubuntu:bionic
 
+ARG KODI_VERSION=18.8
+
+# https://github.com/ehough/docker-nfs-server/pull/3#issuecomment-387880692
+ARG DEBIAN_FRONTEND=noninteractive
+
 # install the team-xbmc ppa
 RUN apt-get update                                                        && \
     apt-get install -y --no-install-recommends software-properties-common && \
@@ -34,15 +39,16 @@ RUN apt-get update                                                        && \
 #  - kodi-game-libretro           allows Kodi to utilize Libretro cores as game add-ons
 #  - kodi-game-libretro-*         Libretro cores
 #  - kodi-inputstream-*           input stream add-ons
-#  - kodi-peripheral-joystick     enables the use of gamepads, joysticks, game controllers, etc.
+#  - kodi-peripheral-*            enables the use of gamepads, joysticks, game controllers, etc.
 #  - kodi-pvr-*                   PVR add-ons
 #  - kodi-screensaver-*           additional screensavers
+#  - locales                      additional spoken language support (via x11docker --lang option)
 #  - pulseaudio                   in case the user prefers PulseAudio instead of ALSA
 #  - tzdata                       necessary for timezone selection
 RUN packages="                                               \
                                                              \
     ca-certificates                                          \
-    kodi=2:18.5+*                                            \
+    kodi=2:${KODI_VERSION}+*                                 \
     kodi-eventclients-kodi-send                              \
     kodi-game-libretro                                       \
     kodi-game-libretro-beetle-pce-fast                       \
@@ -64,6 +70,7 @@ RUN packages="                                               \
     kodi-inputstream-adaptive                                \
     kodi-inputstream-rtmp                                    \
     kodi-peripheral-joystick                                 \
+    kodi-peripheral-xarcade                                  \
     kodi-pvr-argustv                                         \
     kodi-pvr-dvblink                                         \
     kodi-pvr-dvbviewer                                       \
@@ -88,11 +95,13 @@ RUN packages="                                               \
     kodi-screensaver-asteroids                               \
     kodi-screensaver-asterwave                               \
     kodi-screensaver-biogenesis                              \
+    kodi-screensaver-cpblobs                                 \
     kodi-screensaver-greynetic                               \
     kodi-screensaver-matrixtrails                            \
     kodi-screensaver-pingpong                                \
     kodi-screensaver-pyro                                    \
     kodi-screensaver-stars                                   \
+    locales                                                  \
     pulseaudio                                               \
     libnss3                                                  \
     tzdata"                                               && \
